@@ -54,10 +54,10 @@ export const Contact = () => {
     try {
       // NOTE: You will need to replace these with your actual EmailJS IDs!
       await emailjs.sendForm(
-        'YOUR_SERVICE_ID', 
-        'YOUR_TEMPLATE_ID', 
+        'service_08pq4p3', 
+        'template_fvzlfzq', 
         formRef.current, 
-        'YOUR_PUBLIC_KEY'
+        'j43bvKzGLM9PZH5lV'
       );
       
       setIsSubmitted(true);
