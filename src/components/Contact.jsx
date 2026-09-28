@@ -63,7 +63,8 @@ export const Contact = () => {
           subject: formData.subject,
           message: formData.message,
           _subject: "New Portfolio Message: " + formData.subject,
-          _template: "table"
+          _template: "table",
+          _captcha: "false"
         })
       });
       
