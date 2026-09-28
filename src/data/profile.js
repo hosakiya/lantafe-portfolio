@@ -25,7 +25,7 @@ export const personalInfo = {
 
   contact: {
     email: "mikyla0888@gmail.com",
-    linkedin: "https://www.linkedin.com/in/mikaela-ysabel-lantafe-159163352/",
+    linkedin: "https://www.linkedin.com/in/mikaela-ysabel-lantafe/",
     github: "https://github.com/hosakiya",
     location: "Lipa City, Batangas, Philippines",
   },

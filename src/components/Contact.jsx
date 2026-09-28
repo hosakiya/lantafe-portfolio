@@ -131,7 +131,7 @@ export const Contact = () => {
                     rel="noopener noreferrer"
                     className="text-sm font-semibold text-neutral-900 dark:text-white hover:text-rose-700 dark:hover:text-rose-400 transition-colors"
                   >
-                    linkedin.com/in/mikaelalantafe
+                    linkedin.com/in/mikaela-ysabel-lantafe
                   </a>
                 </div>
               </div>
@@ -149,7 +149,7 @@ export const Contact = () => {
                     rel="noopener noreferrer"
                     className="text-sm font-semibold text-neutral-900 dark:text-white hover:text-rose-700 dark:hover:text-rose-400 transition-colors"
                   >
-                    github.com/mikaelalantafe
+                    github.com/hosakiya
                   </a>
                 </div>
               </div>
