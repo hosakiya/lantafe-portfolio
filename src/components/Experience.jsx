@@ -7,18 +7,18 @@ import { experienceData } from '../data/experience';
 
 export const Experience = () => {
   return (
-    <section id="experience" className="py-20 md:py-28">
+    <section id="experience" className="py-20 md:py-28 bg-[#BE185D] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 text-xs font-semibold tracking-wider uppercase mb-3 border border-rose-200 dark:border-rose-900/60">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-900/50 text-rose-200 text-xs font-semibold tracking-wider uppercase mb-3 border border-rose-800">
             <span>Career Path</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Work & Creative Experience
           </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 text-base sm:text-lg mt-3">
+          <p className="text-rose-200/80 text-base sm:text-lg mt-3">
             A track record of translating client goals into visual assets and preparing for upcoming industry placement.
           </p>
         </div>

@@ -8,11 +8,11 @@ import { Projects } from './components/Projects';
 import { Experience } from './components/Experience';
 import { Education } from './components/Education';
 import { Certifications } from './components/Certifications';
-import { GraphicGallery } from './components/GraphicGallery';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { NotFound } from './components/NotFound';
+import { ScrollReveal } from './components/ScrollReveal';
 
 export function AppContent() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -32,19 +32,6 @@ export function AppContent() {
     return () => window.removeEventListener('hashchange', checkHash);
   }, []);
 
-  const handleNavigateToGallery = () => {
-    const el = document.getElementById('gallery');
-    if (el) {
-      const navOffset = 80;
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   const handleResetToHome = () => {
     window.location.hash = '';
     setIsNotFoundView(false);
@@ -62,15 +49,14 @@ export function AppContent() {
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        <Hero onOpenResume={() => setIsResumeOpen(true)} />
-        <About />
-        <Skills />
-        <Projects onNavigateToGallery={handleNavigateToGallery} />
-        <Experience />
-        <Education />
-        <Certifications />
-        <GraphicGallery />
-        <Contact />
+        <ScrollReveal><Hero onOpenResume={() => setIsResumeOpen(true)} /></ScrollReveal>
+        <ScrollReveal><About /></ScrollReveal>
+        <ScrollReveal><Skills /></ScrollReveal>
+        <ScrollReveal><Projects /></ScrollReveal>
+        <ScrollReveal><Experience /></ScrollReveal>
+        <ScrollReveal><Education /></ScrollReveal>
+        <ScrollReveal><Certifications /></ScrollReveal>
+        <ScrollReveal><Contact /></ScrollReveal>
       </main>
 
       {/* Minimalist Footer */}

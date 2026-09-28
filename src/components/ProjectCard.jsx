@@ -65,7 +65,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
           
           {/* Visual Showcase */}
           <div className="lg:col-span-7 w-full order-2 lg:order-1">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl transition-transform duration-300 group-hover:scale-[1.01]">
+            <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-video rounded-2xl overflow-hidden shadow-2xl transition-transform duration-300 group-hover:scale-[1.01]">
               {renderVisual()}
             </div>
           </div>
@@ -160,8 +160,8 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
       
       <div>
         {/* Screenshot / Mockup Preview */}
-        <div className="w-full bg-neutral-950 p-2 sm:p-3 border-b border-neutral-200 dark:border-neutral-800">
-          <div className="transition-transform duration-300 group-hover:scale-[1.01]">
+        <div className="w-full aspect-video bg-neutral-950 p-2 sm:p-3 border-b border-neutral-200 dark:border-neutral-800 overflow-hidden">
+          <div className="w-full h-full transition-transform duration-300 group-hover:scale-[1.01]">
             {renderVisual()}
           </div>
         </div>

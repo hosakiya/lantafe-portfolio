@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   X, ExternalLink, CheckCircle2, AlertTriangle, 
   Lightbulb, Layers, Sparkles, BookOpen, Compass, ArrowRight, ShieldCheck
@@ -27,7 +28,7 @@ export const CaseStudyModal = ({ project, onClose }) => {
     };
   }, [onClose]);
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto bg-neutral-950/80 backdrop-blur-sm animate-in fade-in duration-200">
       
       {/* Modal Container */}
@@ -79,7 +80,7 @@ export const CaseStudyModal = ({ project, onClose }) => {
         <div className="overflow-y-auto p-6 sm:p-8 space-y-10 divide-y divide-neutral-100 dark:divide-neutral-800/80">
           
           {/* Section: Project Visual Mockup */}
-          <div className="w-full">
+          <div className="w-full aspect-square sm:aspect-[4/3] md:aspect-video rounded-xl overflow-hidden shadow-xs border border-neutral-200 dark:border-neutral-800">
             {project.id === 'iskomats' && <IskoMatsMockup />}
             {project.id === 'pet-grooming' && <PetGroomingMockup />}
             {project.id === 'tsong-mex' && <TsongMexMockup />}
@@ -263,6 +264,7 @@ export const CaseStudyModal = ({ project, onClose }) => {
         </div>
 
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };

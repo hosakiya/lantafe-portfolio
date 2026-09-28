@@ -40,7 +40,7 @@ export const Contact = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -49,17 +49,41 @@ export const Contact = () => {
     }
 
     setIsSubmitting(true);
-    // Simulate real network dispatch
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/mikyla0888@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          _subject: "New Portfolio Message: " + formData.subject,
+          _template: "table"
+        })
       });
-    }, 900);
+      
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        alert("Oops! There was a problem submitting your form. Please try again or email directly.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Oops! There was a problem submitting your form. Please try again or email directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

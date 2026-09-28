@@ -9,18 +9,18 @@ export const Certifications = () => {
   const [selectedCert, setSelectedCert] = useState(null);
 
   return (
-    <section id="certifications" className="py-20 md:py-28 bg-neutral-100/60 dark:bg-neutral-900/30 border-y border-neutral-200/60 dark:border-neutral-800/60">
+    <section id="certifications" className="py-20 md:py-28 bg-[#BE185D] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 text-xs font-semibold tracking-wider uppercase mb-3 border border-rose-200 dark:border-rose-900/60">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-900/50 text-rose-200 text-xs font-semibold tracking-wider uppercase mb-3 border border-rose-800">
             <span>Verified Learning</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Certifications & Training
           </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 text-base sm:text-lg mt-3">
+          <p className="text-rose-200/80 text-base sm:text-lg mt-3">
             Industry courses, foundational credentials, and technical workshops completing my IT degree program.
           </p>
         </div>
@@ -88,12 +88,7 @@ export const Certifications = () => {
           ))}
         </div>
 
-        {/* Easy to Add Note */}
-        <div className="mt-8 p-4 rounded-xl border border-dashed border-neutral-300 dark:border-neutral-700 bg-white/50 dark:bg-neutral-900/30 text-center">
-          <p className="text-xs text-neutral-500 dark:text-neutral-400">
-            More certifications can be added seamlessly by editing <code className="font-mono text-neutral-700 dark:text-neutral-300">src/data/certifications.js</code>.
-          </p>
-        </div>
+
 
       </div>
 

@@ -6,7 +6,7 @@ import {
 
 export const IskoMatsMockup = () => {
   return (
-    <div className="w-full h-full min-h-[220px] bg-slate-950 rounded-xl overflow-hidden flex flex-col font-sans select-none border border-slate-700/60 shadow-lg">
+    <div className="w-full h-full bg-slate-950 rounded-xl overflow-hidden flex flex-col font-sans select-none border border-slate-700/60 shadow-lg">
       <div className="bg-slate-950 px-3 py-2 flex items-center justify-between border-b border-slate-800 text-xs shrink-0">
         <div className="flex items-center space-x-2">
           <div className="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
@@ -30,7 +30,7 @@ export const IskoMatsMockup = () => {
 
 export const TsongMexMockup = () => {
   return (
-    <div className="w-full h-full min-h-[220px] bg-slate-950 rounded-xl overflow-hidden flex flex-col font-sans select-none border border-slate-700/60 shadow-lg">
+    <div className="w-full h-full bg-slate-950 rounded-xl overflow-hidden flex flex-col font-sans select-none border border-slate-700/60 shadow-lg">
       <div className="bg-slate-950 px-3 py-2 flex items-center justify-between border-b border-slate-800 text-xs shrink-0">
         <div className="flex items-center space-x-2">
           <div className="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
@@ -53,7 +53,7 @@ export const TsongMexMockup = () => {
 
 export const PetGroomingMockup = () => {
   return (
-    <div className="w-full h-full min-h-[220px] bg-slate-950 rounded-xl overflow-hidden flex flex-col font-sans select-none border border-slate-700/60 shadow-lg">
+    <div className="w-full h-full bg-slate-950 rounded-xl overflow-hidden flex flex-col font-sans select-none border border-slate-700/60 shadow-lg">
       <div className="bg-slate-950 px-3 py-2 flex items-center justify-between border-b border-slate-800 text-xs shrink-0">
         <div className="flex items-center space-x-2">
           <div className="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
@@ -76,7 +76,7 @@ export const PetGroomingMockup = () => {
 
 export const UIUXMockup = () => {
   return (
-    <div className="w-full h-full min-h-[220px] bg-slate-900 text-slate-100 rounded-xl overflow-hidden flex flex-col font-sans select-none border border-slate-700/60 shadow-lg">
+    <div className="w-full h-full bg-slate-900 text-slate-100 rounded-xl overflow-hidden flex flex-col font-sans select-none border border-slate-700/60 shadow-lg">
       <div className="bg-slate-950 px-3 py-2 flex items-center justify-between border-b border-slate-800 text-xs">
         <div className="flex items-center space-x-2">
           <div className="w-2.5 h-2.5 rounded-full bg-rose-500"></div>

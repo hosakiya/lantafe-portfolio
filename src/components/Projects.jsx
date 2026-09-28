@@ -3,8 +3,9 @@ import { Sparkles, FolderGit2, ArrowUpRight } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { ProjectCard } from './ProjectCard';
 import { CaseStudyModal } from './CaseStudyModal';
+import { ScrollReveal } from './ScrollReveal';
 
-export const Projects = ({ onNavigateToGallery }) => {
+export const Projects = () => {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
 
   const featuredProject = projectsData.find((p) => p.featured);
@@ -39,16 +40,15 @@ export const Projects = ({ onNavigateToGallery }) => {
 
         {/* 2. Secondary Project Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {otherProjects.map((project) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              onOpenCaseStudy={setSelectedCaseStudy}
-              onOpenGallery={onNavigateToGallery}
-            />
+          {otherProjects.map((project, index) => (
+            <ScrollReveal key={project.id} delay={index * 150}>
+              <ProjectCard 
+                project={project} 
+                onOpenCaseStudy={setSelectedCaseStudy}
+              />
+            </ScrollReveal>
           ))}
         </div>
-
 
       </div>
 

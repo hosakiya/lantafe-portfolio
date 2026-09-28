@@ -21,7 +21,7 @@ export const Navbar = ({ onOpenResume }) => {
       }
 
       // Active section detection
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'certifications', 'gallery', 'contact'];
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'certifications', 'contact'];
       const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
