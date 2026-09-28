@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { 
   Mail, Send, CheckCircle2, 
   AlertCircle, Sparkles, MapPin, Phone, MessageSquare 
@@ -6,8 +7,8 @@ import {
 import { LinkedInIcon, GitHubIcon } from './Icons';
 import { personalInfo } from '../data/profile';
 
-
 export const Contact = () => {
+  const formRef = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -51,36 +52,23 @@ export const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch("https://formsubmit.co/ajax/mikyla0888@gmail.com", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          _subject: "New Portfolio Message: " + formData.subject,
-          _template: "table",
-          _captcha: "false"
-        })
-      });
+      // NOTE: You will need to replace these with your actual EmailJS IDs!
+      await emailjs.sendForm(
+        'YOUR_SERVICE_ID', 
+        'YOUR_TEMPLATE_ID', 
+        formRef.current, 
+        'YOUR_PUBLIC_KEY'
+      );
       
-      if (response.ok) {
-        setIsSubmitted(true);
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      } else {
-        alert("Oops! There was a problem submitting your form. Please try again or email directly.");
-      }
+      setIsSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
     } catch (error) {
-      console.error(error);
+      console.error('EmailJS Error:', error);
       alert("Oops! There was a problem submitting your form. Please try again or email directly.");
     } finally {
       setIsSubmitting(false);
@@ -216,7 +204,7 @@ export const Contact = () => {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} noValidate className="space-y-4">
+                <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-4">
                   <h3 className="font-bold text-lg text-neutral-900 dark:text-white mb-2">
                     Send a Direct Message
                   </h3>
