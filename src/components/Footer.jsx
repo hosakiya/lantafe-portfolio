@@ -20,9 +20,11 @@ export const Footer = () => {
           
           {/* Brand info */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-rose-700 flex items-center justify-center text-white font-bold text-sm">
-              M
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="Mikaela Logo" 
+              className="w-10 h-10 object-contain drop-shadow-sm"
+            />
             <div>
               <div className="font-bold text-sm text-neutral-900 dark:text-white">
                 Mikaela Ysabel Lantafe
@@ -82,8 +84,6 @@ export const Footer = () => {
           </div>
           <div className="flex items-center gap-2">
             <span>De La Salle Lipa • BS Information Technology</span>
-            <span>•</span>
-            <span>Built with React & Vite</span>
           </div>
         </div>
 

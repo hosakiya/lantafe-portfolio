@@ -2,13 +2,16 @@ import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { 
   Mail, Send, CheckCircle2, 
-  AlertCircle, Sparkles, MapPin, Phone, MessageSquare 
+  AlertCircle, Sparkles, MapPin, Phone, MessageSquare,
+  Copy, Check
 } from 'lucide-react';
 import { LinkedInIcon, GitHubIcon } from './Icons';
 import { personalInfo } from '../data/profile';
+import { SpotlightCard } from './SpotlightCard';
 
 export const Contact = () => {
   const formRef = useRef();
+  const [copiedEmail, setCopiedEmail] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -75,6 +78,16 @@ export const Contact = () => {
     }
   };
 
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.contact.email);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2000);
+    } catch {
+      // Fallback
+    }
+  };
+
   return (
     <section id="contact" className="py-20 md:py-28 bg-white dark:bg-neutral-900/40 border-t border-neutral-200/60 dark:border-neutral-800/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -97,30 +110,55 @@ export const Contact = () => {
           {/* Contact Details Left Column */}
           <div className="lg:col-span-5 space-y-8">
             
-            <div className="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 space-y-5">
+            <SpotlightCard 
+              spotlightColor="rgba(225, 29, 72, 0.12)"
+              spotlightBorderColor="rgba(244, 63, 94, 0.35)"
+              className="p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 space-y-5 shadow-xs hover:shadow-lg transition-all"
+            >
               <h3 className="font-bold text-lg text-neutral-900 dark:text-white">
                 Contact Information
               </h3>
 
-              {/* Email */}
-              <div className="flex items-start gap-3.5">
-                <div className="p-2.5 rounded-xl bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400 shrink-0">
-                  <Mail className="w-5 h-5" />
+              {/* Email with Click-to-Copy Microinteraction */}
+              <div className="flex items-start justify-between gap-3 group/mail">
+                <div className="flex items-start gap-3.5">
+                  <div className="p-2.5 rounded-xl bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400 shrink-0 group-hover/mail:scale-110 transition-transform">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-neutral-400">Direct Email</div>
+                    <a 
+                      href={`mailto:${personalInfo.contact.email}`}
+                      className="text-sm font-semibold text-neutral-900 dark:text-white hover:text-rose-700 dark:hover:text-rose-400 transition-colors"
+                    >
+                      {personalInfo.contact.email}
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-xs text-neutral-400">Direct Email</div>
-                  <a 
-                    href={`mailto:${personalInfo.contact.email}`}
-                    className="text-sm font-semibold text-neutral-900 dark:text-white hover:text-rose-700 dark:hover:text-rose-400 transition-colors"
-                  >
-                    {personalInfo.contact.email}
-                  </a>
-                </div>
+
+                <button
+                  onClick={handleCopyEmail}
+                  type="button"
+                  title="Copy email to clipboard"
+                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:border-rose-400 dark:hover:border-rose-500 bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:text-rose-600 dark:hover:text-rose-400 text-xs font-medium hover:scale-105 active:scale-95 transition-all duration-200 ease-spring cursor-pointer shadow-2xs"
+                >
+                  {copiedEmail ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-500 animate-in zoom-in-50" />
+                      <span className="text-emerald-600 dark:text-emerald-400 font-semibold text-[11px]">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span className="text-[11px] hidden sm:inline">Copy</span>
+                    </>
+                  )}
+                </button>
               </div>
 
               {/* LinkedIn */}
-              <div className="flex items-start gap-3.5">
-                <div className="p-2.5 rounded-xl bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400 shrink-0">
+              <div className="flex items-start gap-3.5 group/link">
+                <div className="p-2.5 rounded-xl bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400 shrink-0 group-hover/link:scale-110 transition-transform">
                   <LinkedInIcon className="w-5 h-5" />
                 </div>
                 <div>
@@ -166,12 +204,12 @@ export const Contact = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </SpotlightCard>
 
             {/* Recruiter / Internship Quick Note */}
             <div className="p-5 rounded-2xl bg-rose-50/60 dark:bg-rose-950/20 border border-rose-200/80 dark:border-rose-900/40">
               <h4 className="font-bold text-sm text-rose-900 dark:text-rose-300 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-rose-700" />
+                <Sparkles className="w-4 h-4 text-rose-700 animate-pulse" />
                 Internship / OJT Inquiries
               </h4>
               <p className="text-xs text-neutral-600 dark:text-neutral-300 mt-1.5 leading-relaxed">
@@ -183,7 +221,11 @@ export const Contact = () => {
 
           {/* Contact Form Column */}
           <div className="lg:col-span-7">
-            <div className="bg-neutral-50 dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 shadow-xs">
+            <SpotlightCard 
+              spotlightColor="rgba(225, 29, 72, 0.12)"
+              spotlightBorderColor="rgba(244, 63, 94, 0.4)"
+              className="bg-neutral-50 dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 shadow-xs hover:shadow-xl transition-all"
+            >
               
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-4 animate-in fade-in">
@@ -308,14 +350,14 @@ export const Contact = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-semibold text-sm shadow-md shadow-rose-700/20 transition-all disabled:opacity-50 cursor-pointer"
+                      className="group w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-semibold text-sm shadow-md shadow-rose-700/20 hover:shadow-xl hover:shadow-rose-700/30 hover:scale-[1.01] active:scale-[0.98] transition-all duration-200 ease-spring disabled:opacity-50 cursor-pointer"
                     >
                       {isSubmitting ? (
-                        <span>Sending Message...</span>
+                        <span className="animate-pulse">Sending Message...</span>
                       ) : (
                         <>
                           <span>Send Message</span>
-                          <Send className="w-4 h-4" />
+                          <Send className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
                         </>
                       )}
                     </button>
@@ -323,7 +365,7 @@ export const Contact = () => {
                 </form>
               )}
 
-            </div>
+            </SpotlightCard>
           </div>
 
         </div>

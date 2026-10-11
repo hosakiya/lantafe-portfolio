@@ -5,12 +5,14 @@ import {
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { personalInfo } from '../data/profile';
+import { CircularWipe } from './CircularWipe';
 
 export const Navbar = ({ onOpenResume }) => {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeWipe, setActiveWipe] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,20 +43,32 @@ export const Navbar = ({ onOpenResume }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e, href, targetName) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
+
+    // Calculate click coordinates for circular wipe expansion
+    const rect = e.currentTarget ? e.currentTarget.getBoundingClientRect() : null;
+    const x = e.clientX || (rect ? rect.left + rect.width / 2 : window.innerWidth / 2);
+    const y = e.clientY || (rect ? rect.top + rect.height / 2 : 40);
+
+    // Trigger circular wipe animation expanding from click position
+    setActiveWipe({ x, y, targetName });
+
+    // Scroll to target section right as the circular wipe blankets the screen
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
-      const navOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      setTimeout(() => {
+        const navOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }, 220);
     }
   };
 
@@ -72,14 +86,18 @@ export const Navbar = ({ onOpenResume }) => {
           {/* Logo / Brand Name */}
           <a 
             href="#home" 
-            onClick={(e) => handleNavClick(e, '#home')}
+            onClick={(e) => handleNavClick(e, '#home', 'Home')}
             className="flex items-center gap-3 group focus:outline-hidden focus:ring-2 focus:ring-rose-500 rounded-lg p-1"
           >
-            <div className="w-10 h-10 rounded-xl bg-rose-700 dark:bg-rose-700 flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
-              M
+            <div className="w-11 h-11 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ease-spring">
+              <img 
+                src="/logo.png" 
+                alt="Mikaela Logo" 
+                className="w-full h-full object-contain drop-shadow-sm" 
+              />
             </div>
             <div>
-              <span className="font-bold text-neutral-900 dark:text-white tracking-tight text-base sm:text-lg block leading-tight">
+              <span className="font-bold text-neutral-900 dark:text-white tracking-tight text-base sm:text-lg block leading-tight group-hover:text-rose-700 dark:group-hover:text-rose-400 transition-colors duration-200">
                 Mikaela Ysabel
               </span>
               <span className="text-[11px] font-medium text-neutral-500 dark:text-neutral-400 block tracking-wider uppercase">
@@ -97,16 +115,16 @@ export const Navbar = ({ onOpenResume }) => {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all relative ${
+                  onClick={(e) => handleNavClick(e, item.href, item.name)}
+                  className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ease-spring relative group ${
                     isActive 
-                      ? 'text-rose-600 dark:text-rose-400 font-semibold' 
-                      : 'text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800/60'
+                      ? 'text-rose-600 dark:text-rose-400 font-semibold bg-rose-500/10 dark:bg-rose-500/15' 
+                      : 'text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800/60 hover:scale-105 active:scale-95'
                   }`}
                 >
                   {item.name}
                   {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-rose-600 dark:bg-rose-400 rounded-full" />
+                    <span className="absolute bottom-1 left-3.5 right-3.5 h-0.5 bg-gradient-to-r from-rose-600 to-pink-500 rounded-full animate-in fade-in zoom-in-50 duration-300" />
                   )}
                 </a>
               );
@@ -119,21 +137,21 @@ export const Navbar = ({ onOpenResume }) => {
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-rose-500"
+              className="group p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:scale-105 active:scale-90 transition-all duration-200 ease-spring focus:outline-hidden focus:ring-2 focus:ring-rose-500 cursor-pointer"
             >
               {theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-400" />
+                <Sun className="w-4 h-4 text-amber-400 transition-transform duration-300 group-hover:rotate-90 group-hover:scale-110" />
               ) : (
-                <Moon className="w-4 h-4 text-neutral-700" />
+                <Moon className="w-4 h-4 text-neutral-700 transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110" />
               )}
             </button>
 
             {/* Resume Button */}
             <button
               onClick={onOpenResume}
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 shadow-xs hover:shadow-md transition-all active:scale-98 cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-rose-500"
+              className="group inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-rose-700 dark:hover:bg-rose-600 dark:hover:text-white shadow-xs hover:shadow-lg hover:shadow-rose-700/20 hover:scale-105 active:scale-95 transition-all duration-200 ease-spring cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-rose-500"
             >
-              <FileDown className="w-4 h-4 text-rose-500 dark:text-rose-600" />
+              <FileDown className="w-4 h-4 text-rose-500 dark:text-rose-600 group-hover:text-white transition-all duration-200 group-hover:-translate-y-0.5" />
               <span>Resume</span>
             </button>
           </div>
@@ -169,8 +187,8 @@ export const Navbar = ({ onOpenResume }) => {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={`px-3 py-2.5 rounded-lg text-base font-medium flex items-center justify-between ${
+                  onClick={(e) => handleNavClick(e, item.href, item.name)}
+                  className={`px-3 py-2.5 rounded-lg text-base font-medium flex items-center justify-between transition-colors ${
                     isActive 
                       ? 'bg-rose-50 text-rose-600 dark:bg-rose-950/40 dark:text-rose-400 font-semibold' 
                       : 'text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-900'
@@ -197,6 +215,12 @@ export const Navbar = ({ onOpenResume }) => {
           </div>
         </div>
       )}
+
+      {/* Circular Screen Transition Wipe from Click Coordinate */}
+      <CircularWipe 
+        activeWipe={activeWipe} 
+        onComplete={() => setActiveWipe(null)} 
+      />
     </header>
   );
 };

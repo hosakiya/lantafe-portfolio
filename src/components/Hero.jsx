@@ -65,17 +65,17 @@ export const Hero = ({ onOpenResume }) => {
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
               <button
                 onClick={() => scrollTo('projects')}
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-semibold text-sm shadow-md shadow-rose-700/20 hover:shadow-lg hover:shadow-rose-700/30 transition-all active:scale-98 cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-rose-500"
+                className="group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-semibold text-sm shadow-md shadow-rose-700/20 hover:shadow-xl hover:shadow-rose-700/30 hover:scale-105 active:scale-95 transition-all duration-200 ease-spring cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-rose-500"
               >
                 <span>View My Work</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
               </button>
 
               <button
                 onClick={() => scrollTo('contact')}
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800/80 text-neutral-800 dark:text-neutral-200 font-semibold text-sm transition-all active:scale-98 cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-rose-500"
+                className="group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800/80 text-neutral-800 dark:text-neutral-200 font-semibold text-sm hover:scale-105 active:scale-95 transition-all duration-200 ease-spring cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-rose-500"
               >
-                <Mail className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
+                <Mail className="w-4 h-4 text-neutral-500 dark:text-neutral-400 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors" />
                 <span>Contact Me</span>
               </button>
             </div>
@@ -88,7 +88,7 @@ export const Hero = ({ onOpenResume }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn Profile"
-                  className="p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:text-rose-700 dark:hover:text-rose-400 hover:border-rose-400/50 transition-all hover:scale-105"
+                  className="p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:text-rose-700 dark:hover:text-rose-400 hover:border-rose-400/50 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-all duration-200 ease-spring hover:scale-110 hover:-translate-y-0.5 active:scale-95 shadow-2xs hover:shadow-sm"
                 >
                   <LinkedInIcon className="w-4 h-4" />
                 </a>
@@ -98,7 +98,7 @@ export const Hero = ({ onOpenResume }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub Profile"
-                  className="p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-400/50 transition-all hover:scale-105"
+                  className="p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:text-neutral-900 dark:hover:text-white hover:border-neutral-400/50 hover:bg-neutral-100 dark:hover:bg-neutral-800/60 transition-all duration-200 ease-spring hover:scale-110 hover:-translate-y-0.5 active:scale-95 shadow-2xs hover:shadow-sm"
                 >
                   <GitHubIcon className="w-4 h-4" />
                 </a>
@@ -106,7 +106,7 @@ export const Hero = ({ onOpenResume }) => {
                 <a
                   href={`mailto:${personalInfo.contact.email}`}
                   aria-label="Send Email"
-                  className="p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:text-rose-600 dark:hover:text-rose-400 hover:border-rose-400/50 transition-all hover:scale-105"
+                  className="p-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 hover:text-rose-600 dark:hover:text-rose-400 hover:border-rose-400/50 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-all duration-200 ease-spring hover:scale-110 hover:-translate-y-0.5 active:scale-95 shadow-2xs hover:shadow-sm"
                 >
                   <Mail className="w-4 h-4" />
                 </a>
@@ -122,13 +122,13 @@ export const Hero = ({ onOpenResume }) => {
 
           {/* Profile Photo / Visual Column */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative w-72 sm:w-80 md:w-88 group">
+            <div className="relative w-72 sm:w-80 md:w-88 group animate-float-slow">
               
               {/* Outer Decorative Ring */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-rose-700 to-pink-600 opacity-20 blur-md group-hover:opacity-35 transition duration-500"></div>
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-rose-700 to-pink-600 opacity-20 blur-md group-hover:opacity-45 group-hover:scale-105 transition-all duration-500"></div>
 
               {/* Main Photo Card Container */}
-              <div className="relative rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-3 shadow-xl overflow-hidden">
+              <div className="relative rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-3 shadow-xl overflow-hidden group-hover:border-rose-300 dark:group-hover:border-rose-800/80 transition-all duration-300">
                 
                 {/* Visual Portrait Frame */}
                 <div className="relative aspect-4/5 rounded-2xl bg-gradient-to-b from-rose-50 to-pink-100 dark:from-neutral-800 dark:to-neutral-950 overflow-hidden flex flex-col items-center justify-center p-6 text-center">
@@ -137,14 +137,14 @@ export const Hero = ({ onOpenResume }) => {
                   <div className="relative z-10 w-full flex flex-col items-center">
                     {/* Stylized Modern Avatar Badge */}
                     <div className="relative mb-4">
-                      <div className="w-40 h-40 rounded-full bg-gradient-to-tr from-rose-700 via-pink-600 to-rose-400 p-1 shadow-lg shadow-rose-600/25">
+                      <div className="w-40 h-40 rounded-full bg-gradient-to-tr from-rose-700 via-pink-600 to-rose-400 p-1 shadow-lg shadow-rose-600/25 group-hover:scale-105 transition-transform duration-300">
                         <div className="w-full h-full rounded-full bg-white dark:bg-neutral-900 flex items-center justify-center overflow-hidden">
-                          <img src="/profile.png" alt="Mikaela Ysabel L. Lantafe" className="w-full h-full object-cover" />
+                          <img src="/profile.png" alt="Mikaela Ysabel L. Lantafe" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                         </div>
                       </div>
                       
                       {/* Floating Mini Badges */}
-                      <span className="absolute -bottom-1 -right-1 p-2 bg-rose-700 text-white rounded-full shadow-md">
+                      <span className="absolute -bottom-1 -right-1 p-2 bg-rose-700 text-white rounded-full shadow-md animate-pulse-glow">
                         <Sparkles className="w-4 h-4" />
                       </span>
                     </div>
@@ -158,13 +158,13 @@ export const Hero = ({ onOpenResume }) => {
 
                     {/* Tag Badges */}
                     <div className="flex flex-wrap justify-center gap-1.5 mt-4">
-                      <span className="text-[11px] font-medium bg-white/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-700 shadow-2xs">
+                      <span className="text-[11px] font-medium bg-white/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-700 shadow-2xs hover:scale-105 hover:border-rose-400 transition-all duration-200 cursor-default">
                         UI/UX Designer
                       </span>
-                      <span className="text-[11px] font-medium bg-white/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-700 shadow-2xs">
+                      <span className="text-[11px] font-medium bg-white/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-700 shadow-2xs hover:scale-105 hover:border-rose-400 transition-all duration-200 cursor-default">
                         Graphic Designer
                       </span>
-                      <span className="text-[11px] font-medium bg-white/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-700 shadow-2xs">
+                      <span className="text-[11px] font-medium bg-white/80 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-700 shadow-2xs hover:scale-105 hover:border-rose-400 transition-all duration-200 cursor-default">
                         QA Tester
                       </span>
                     </div>

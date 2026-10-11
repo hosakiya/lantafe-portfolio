@@ -10,6 +10,7 @@ import {
   UIUXMockup, GraphicDesignMockup,
   TsongMexMockup
 } from './ProjectMockups';
+import { SpotlightCard } from './SpotlightCard';
 
 export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
   const { 
@@ -39,7 +40,11 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
   // If featured project (iskoMats) -> Larger, prominent spotlight layout!
   if (featured) {
     return (
-      <div className="bg-white dark:bg-neutral-900 rounded-3xl border-2 border-rose-500/30 dark:border-rose-500/40 p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden group">
+      <SpotlightCard 
+        spotlightColor="rgba(225, 29, 72, 0.15)"
+        spotlightBorderColor="rgba(244, 63, 94, 0.5)"
+        className="bg-white dark:bg-neutral-900 rounded-3xl border-2 border-rose-500/30 dark:border-rose-500/40 p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden group hover:shadow-2xl transition-all duration-300"
+      >
         
         {/* Decorative ambient gradient */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-rose-500/5 dark:bg-rose-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -48,7 +53,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-700 text-white text-xs font-bold tracking-wide uppercase shadow-xs">
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 animate-pulse" />
               <span>Primary Capstone Project</span>
             </span>
             <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 px-3 py-1 rounded-full border border-neutral-200 dark:border-neutral-700">
@@ -65,7 +70,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
           
           {/* Visual Showcase */}
           <div className="lg:col-span-7 w-full order-2 lg:order-1">
-            <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-video rounded-2xl overflow-hidden shadow-2xl transition-transform duration-300 group-hover:scale-[1.01]">
+            <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-video rounded-2xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
               {renderVisual()}
             </div>
           </div>
@@ -73,7 +78,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
           {/* Details & Action */}
           <div className="lg:col-span-5 space-y-5 order-1 lg:order-2">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 dark:text-white tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 dark:text-white tracking-tight group-hover:text-rose-700 dark:group-hover:text-rose-400 transition-colors">
                 {title}
               </h3>
               <p className="text-sm font-medium text-rose-700 dark:text-rose-400 mt-1">
@@ -102,7 +107,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
               {technologies.map((tech) => (
                 <span 
                   key={tech} 
-                  className="px-2.5 py-1 text-xs font-medium rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/80"
+                  className="px-2.5 py-1 text-xs font-medium rounded-lg bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200/80 dark:border-neutral-700/80 hover:scale-105 hover:border-rose-400 transition-all duration-200 cursor-default"
                 >
                   {tech}
                 </span>
@@ -114,9 +119,9 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
               {hasCaseStudy && (
                 <button
                   onClick={() => onOpenCaseStudy(project)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-semibold text-xs sm:text-sm shadow-md shadow-rose-700/20 transition-all cursor-pointer"
+                  className="group/btn inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-semibold text-xs sm:text-sm shadow-md shadow-rose-700/20 hover:shadow-xl hover:shadow-rose-700/30 hover:scale-105 active:scale-95 transition-all duration-200 ease-spring cursor-pointer"
                 >
-                  <BookOpen className="w-4 h-4" />
+                  <BookOpen className="w-4 h-4 transition-transform duration-200 group-hover/btn:rotate-6" />
                   <span>View Full Case Study</span>
                 </button>
               )}
@@ -126,7 +131,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
                   href={demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 font-semibold text-xs sm:text-sm transition-all"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 font-semibold text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-200 ease-spring"
                 >
                   <ExternalLink className="w-4 h-4 text-rose-500" />
                   <span>Live Demo</span>
@@ -138,7 +143,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
                   href={githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 font-semibold text-xs sm:text-sm transition-all"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 font-semibold text-xs sm:text-sm hover:scale-105 active:scale-95 transition-all duration-200 ease-spring"
                 >
                   <GitHubIcon className="w-4 h-4 text-neutral-700 dark:text-neutral-300" />
                   <span>GitHub</span>
@@ -150,18 +155,22 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
 
         </div>
 
-      </div>
+      </SpotlightCard>
     );
   }
 
   // Standard Secondary Project Cards
   return (
-    <div className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden shadow-xs hover:border-neutral-300 dark:hover:border-neutral-700 transition-all flex flex-col justify-between group">
+    <SpotlightCard 
+      spotlightColor="rgba(225, 29, 72, 0.12)"
+      spotlightBorderColor="rgba(244, 63, 94, 0.4)"
+      className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden shadow-xs hover:border-rose-400/60 dark:hover:border-rose-500/60 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group h-full"
+    >
       
       <div>
         {/* Screenshot / Mockup Preview */}
         <div className="w-full aspect-video bg-neutral-950 p-2 sm:p-3 border-b border-neutral-200 dark:border-neutral-800 overflow-hidden">
-          <div className="w-full h-full transition-transform duration-300 group-hover:scale-[1.01]">
+          <div className="w-full h-full transition-transform duration-500 group-hover:scale-105">
             {renderVisual()}
           </div>
         </div>
@@ -173,7 +182,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
               <span>{project.category}</span>
               <span className="font-semibold text-rose-700 dark:text-rose-400">{role}</span>
             </div>
-            <h4 className="text-lg font-bold text-neutral-900 dark:text-white tracking-tight">
+            <h4 className="text-lg font-bold text-neutral-900 dark:text-white tracking-tight group-hover:text-rose-700 dark:group-hover:text-rose-400 transition-colors">
               {title}
             </h4>
           </div>
@@ -187,7 +196,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
             {technologies.map((tech) => (
               <span 
                 key={tech} 
-                className="px-2 py-0.5 text-[11px] font-medium rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200/60 dark:border-neutral-700/60"
+                className="px-2 py-0.5 text-[11px] font-medium rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200/60 dark:border-neutral-700/60 hover:scale-105 hover:border-rose-400/50 transition-all duration-200 cursor-default"
               >
                 {tech}
               </span>
@@ -201,7 +210,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
         {hasCaseStudy && (
           <button
             onClick={() => onOpenCaseStudy(project)}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 text-xs font-semibold transition-colors cursor-pointer"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-rose-700 dark:hover:bg-rose-600 dark:hover:text-white text-xs font-semibold hover:scale-[1.02] active:scale-95 transition-all duration-200 ease-spring cursor-pointer shadow-2xs hover:shadow-md"
           >
             <BookOpen className="w-3.5 h-3.5" />
             <span>Case Study</span>
@@ -211,7 +220,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
         {id === 'graphic-design-portfolio' && onOpenGallery && (
           <button
             onClick={onOpenGallery}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 text-xs font-semibold transition-colors cursor-pointer"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-rose-700 dark:hover:bg-rose-600 dark:hover:text-white text-xs font-semibold hover:scale-[1.02] active:scale-95 transition-all duration-200 ease-spring cursor-pointer shadow-2xs hover:shadow-md"
           >
             <span>Explore Gallery</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -223,7 +232,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
             href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center p-2 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition-colors"
+            className="inline-flex items-center justify-center p-2 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:border-rose-400 text-neutral-700 dark:text-neutral-300 hover:text-rose-700 dark:hover:text-rose-400 hover:scale-110 active:scale-95 transition-all duration-200 ease-spring"
             title="Live Demo"
           >
             <ExternalLink className="w-4 h-4" />
@@ -235,7 +244,7 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center p-2 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 transition-colors"
+            className="inline-flex items-center justify-center p-2 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:scale-110 active:scale-95 transition-all duration-200 ease-spring"
             title="GitHub Repository"
           >
             <GitHubIcon className="w-4 h-4" />
@@ -243,6 +252,6 @@ export const ProjectCard = ({ project, onOpenCaseStudy, onOpenGallery }) => {
         )}
       </div>
 
-    </div>
+    </SpotlightCard>
   );
 };

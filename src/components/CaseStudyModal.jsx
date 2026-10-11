@@ -33,7 +33,7 @@ export const CaseStudyModal = ({ project, onClose }) => {
       
       {/* Modal Container */}
       <div 
-        className="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-2xl flex flex-col overflow-hidden text-neutral-900 dark:text-neutral-100"
+        className="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-2xl flex flex-col overflow-hidden text-neutral-900 dark:text-neutral-100 animate-in zoom-in-95 duration-200"
         role="dialog"
         aria-modal="true"
         aria-labelledby="case-study-title"
@@ -60,7 +60,7 @@ export const CaseStudyModal = ({ project, onClose }) => {
                 href={demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-800 dark:text-neutral-200 transition-colors"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-rose-700 hover:text-white dark:hover:bg-rose-600 dark:hover:text-white text-neutral-800 dark:text-neutral-200 hover:scale-105 active:scale-95 transition-all duration-200 ease-spring"
               >
                 <span>Live Demo</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -69,7 +69,7 @@ export const CaseStudyModal = ({ project, onClose }) => {
             <button
               onClick={onClose}
               aria-label="Close modal"
-              className="p-2 rounded-xl text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors focus:outline-hidden focus:ring-2 focus:ring-rose-500"
+              className="p-2 rounded-xl text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:scale-110 active:scale-90 transition-transform duration-200 focus:outline-hidden focus:ring-2 focus:ring-rose-500 cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>

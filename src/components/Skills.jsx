@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { FigmaIcon } from './Icons';
 import { skillsData } from '../data/skills';
+import { SpotlightCard } from './SpotlightCard';
 
 // Helper icon mapper
 const getSkillIcon = (iconName) => {
@@ -65,17 +66,19 @@ export const Skills = () => {
         {/* 4 Main Skill Categories */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {skillsData.map((categoryGroup, index) => (
-            <div 
+            <SpotlightCard 
               key={categoryGroup.category}
-              className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-7 shadow-xs hover:border-neutral-300 dark:hover:border-neutral-700 transition-all flex flex-col justify-between"
+              spotlightColor="rgba(225, 29, 72, 0.12)"
+              spotlightBorderColor="rgba(244, 63, 94, 0.4)"
+              className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-7 shadow-xs hover:border-rose-400/60 dark:hover:border-rose-600/60 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 {/* Category Header */}
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-lg font-bold text-neutral-900 dark:text-white tracking-tight">
+                  <h3 className="text-lg font-bold text-neutral-900 dark:text-white tracking-tight group-hover:text-rose-700 dark:group-hover:text-rose-400 transition-colors">
                     {categoryGroup.category}
                   </h3>
-                  <span className="text-xs font-mono text-neutral-400 dark:text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded">
+                  <span className="text-xs font-mono text-neutral-400 dark:text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded group-hover:bg-rose-100 dark:group-hover:bg-rose-950/60 group-hover:text-rose-700 dark:group-hover:text-rose-300 transition-colors">
                     0{index + 1}
                   </span>
                 </div>
@@ -88,13 +91,13 @@ export const Skills = () => {
                   {categoryGroup.skills.map((skill) => (
                     <div 
                       key={skill.name}
-                      className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200/60 dark:border-neutral-700/60 hover:border-rose-400/50 dark:hover:border-rose-500/50 transition-colors flex items-start gap-3"
+                      className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200/60 dark:border-neutral-700/60 hover:border-rose-400/70 dark:hover:border-rose-500/70 hover:bg-white dark:hover:bg-neutral-800 hover:shadow-md hover:-translate-y-0.5 active:scale-98 transition-all duration-200 ease-spring flex items-start gap-3 group/item cursor-default"
                     >
-                      <div className="p-1.5 rounded-lg bg-white dark:bg-neutral-700/80 shadow-2xs shrink-0 mt-0.5">
+                      <div className="p-1.5 rounded-lg bg-white dark:bg-neutral-700/80 shadow-2xs shrink-0 mt-0.5 group-hover/item:scale-110 group-hover/item:rotate-6 transition-all duration-200">
                         {getSkillIcon(skill.icon)}
                       </div>
                       <div className="min-w-0">
-                        <div className="font-semibold text-xs sm:text-sm text-neutral-900 dark:text-white truncate">
+                        <div className="font-semibold text-xs sm:text-sm text-neutral-900 dark:text-white truncate group-hover/item:text-rose-700 dark:group-hover/item:text-rose-400 transition-colors">
                           {skill.name}
                         </div>
                         <div className="text-[11px] text-neutral-500 dark:text-neutral-400 line-clamp-1">
@@ -106,7 +109,7 @@ export const Skills = () => {
                 </div>
               </div>
 
-            </div>
+            </SpotlightCard>
           ))}
         </div>
 

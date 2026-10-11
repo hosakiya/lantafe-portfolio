@@ -13,6 +13,8 @@ import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { NotFound } from './components/NotFound';
 import { ScrollReveal } from './components/ScrollReveal';
+import { ScrollProgress } from './components/ScrollProgress';
+import { BackToTop } from './components/BackToTop';
 
 export function AppContent() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -44,6 +46,9 @@ export function AppContent() {
 
   return (
     <div className="min-h-screen flex flex-col selection:bg-rose-700 selection:text-white transition-colors duration-200">
+      {/* Top Scroll Progress Indicator Bar */}
+      <ScrollProgress />
+
       {/* Sticky Navigation */}
       <Navbar onOpenResume={() => setIsResumeOpen(true)} />
 
@@ -61,6 +66,9 @@ export function AppContent() {
 
       {/* Minimalist Footer */}
       <Footer />
+
+      {/* Floating Back to Top Microinteraction */}
+      <BackToTop />
 
       {/* Interactive Resume View/Print Modal */}
       <ResumeModal 

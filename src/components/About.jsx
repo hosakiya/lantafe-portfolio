@@ -4,6 +4,7 @@ import {
   MapPin, CheckCircle2, ArrowRight, Code2, Layers, HeartHandshake
 } from 'lucide-react';
 import { personalInfo } from '../data/profile';
+import { SpotlightCard } from './SpotlightCard';
 
 export const About = () => {
   return (
@@ -18,50 +19,72 @@ export const About = () => {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 dark:text-white tracking-tight">
             Bridging intuitive design with clean, accessible code.
           </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 text-base sm:text-lg mt-3">
-            A 4th-year IT student dedicated to designing delightful experiences and shipping robust front-end web applications.
-          </p>
         </div>
 
         {/* Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           
-          {/* Bio Narrative */}
-          <div className="lg:col-span-7 space-y-5 text-neutral-700 dark:text-neutral-300 text-base leading-relaxed">
-            {personalInfo.aboutBio.map((paragraph, idx) => (
-              <p key={idx} className="font-normal">
-                {paragraph}
-              </p>
-            ))}
-
-            {/* Design & Engineering Philosophy Quote/Callout */}
-            <div className="p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 relative mt-6">
-              <div className="flex items-start gap-3.5">
-                <div className="p-2 rounded-xl bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 shrink-0">
-                  <Sparkles className="w-5 h-5" />
+          {/* Bio Narrative Container */}
+          <div className="lg:col-span-7 flex flex-col">
+            <SpotlightCard 
+              spotlightColor="rgba(225, 29, 72, 0.12)"
+              spotlightBorderColor="rgba(244, 63, 94, 0.35)"
+              className="h-full bg-neutral-50 dark:bg-neutral-900/80 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-7 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-neutral-800">
+                  <h3 className="font-bold text-neutral-900 dark:text-white text-base">
+                    Biography & Overview
+                  </h3>
+                  <span className="text-xs font-semibold text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950 px-2.5 py-0.5 rounded-full border border-rose-200 dark:border-rose-900">
+                    BSIT Senior
+                  </span>
                 </div>
-                <div>
-                  <h4 className="text-sm font-semibold text-neutral-900 dark:text-white">
-                    Design-to-Code Synergy
-                  </h4>
-                  <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1">
-                    "I believe great digital products happen when thoughtful UX empathy meets clean, maintainable front-end code. Having both design and engineering skills allows me to communicate effectively with stakeholders, prototype quickly, and build without losing fidelity."
-                  </p>
+
+                <div className="space-y-4 pt-1 text-neutral-700 dark:text-neutral-300 text-sm sm:text-base leading-relaxed">
+                  {personalInfo.aboutBio.map((paragraph, idx) => (
+                    <p key={idx} className="font-normal">
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
               </div>
-            </div>
+
+              {/* Design & Engineering Philosophy Quote/Callout */}
+              <div className="p-4 sm:p-5 rounded-xl bg-white dark:bg-neutral-950 border border-neutral-200/80 dark:border-neutral-800/80 relative mt-6 shadow-2xs">
+                <div className="flex items-start gap-3.5">
+                  <div className="p-2 rounded-xl bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 shrink-0">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm sm:text-base font-medium italic text-neutral-800 dark:text-neutral-200 leading-relaxed">
+                      “The only way to do great work is to love what you do.”
+                    </p>
+                    <span className="text-xs text-rose-600 dark:text-rose-400 font-semibold block mt-1.5 not-italic">
+                      — Steve Jobs
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </SpotlightCard>
           </div>
 
           {/* Quick Facts Information Cards */}
-          <div className="lg:col-span-5">
-            <div className="bg-neutral-50 dark:bg-neutral-900/80 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-xs">
-              <div className="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-neutral-800">
-                <h3 className="font-bold text-neutral-900 dark:text-white text-base">
-                  Profile Snapshot
-                </h3>
-                <span className="text-xs font-semibold text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950 px-2.5 py-0.5 rounded-full border border-rose-200 dark:border-rose-900">
-                  Active Candidate
-                </span>
+          <div className="lg:col-span-5 flex flex-col">
+            <SpotlightCard 
+              spotlightColor="rgba(225, 29, 72, 0.12)"
+              spotlightBorderColor="rgba(244, 63, 94, 0.35)"
+              className="h-full bg-neutral-50 dark:bg-neutral-900/80 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-7 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-neutral-200 dark:border-neutral-800">
+                  <h3 className="font-bold text-neutral-900 dark:text-white text-base">
+                    Profile Snapshot
+                  </h3>
+                  <span className="text-xs font-semibold text-rose-700 dark:text-rose-300 bg-rose-50 dark:bg-rose-950 px-2.5 py-0.5 rounded-full border border-rose-200 dark:border-rose-900">
+                    Active Candidate
+                  </span>
+                </div>
               </div>
 
               <div className="divide-y divide-neutral-200/80 dark:divide-neutral-800/80">
@@ -151,14 +174,14 @@ export const About = () => {
               <div className="pt-5 mt-2">
                 <a
                   href="#contact"
-                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-colors"
+                  className="group w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-semibold bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 hover:bg-rose-700 dark:hover:bg-rose-600 dark:hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-200 ease-spring shadow-2xs hover:shadow-md cursor-pointer"
                 >
                   <span>Connect for OJT Placement</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                 </a>
               </div>
 
-            </div>
+            </SpotlightCard>
           </div>
 
         </div>

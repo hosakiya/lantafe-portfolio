@@ -4,6 +4,7 @@ import {
   Calendar, MapPin, CheckCircle, Sparkles 
 } from 'lucide-react';
 import { educationData } from '../data/education';
+import { SpotlightCard } from './SpotlightCard';
 
 export const Education = () => {
   const { college, highSchool } = educationData;
@@ -28,7 +29,11 @@ export const Education = () => {
         <div className="space-y-6">
 
           {/* College Card */}
-          <div className="bg-neutral-50 dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 lg:p-10 shadow-xs">
+          <SpotlightCard 
+            spotlightColor="rgba(225, 29, 72, 0.12)"
+            spotlightBorderColor="rgba(244, 63, 94, 0.4)"
+            className="bg-neutral-50 dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 lg:p-10 shadow-xs hover:shadow-xl transition-all duration-300"
+          >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-neutral-200 dark:border-neutral-800">
               
               <div className="flex items-start gap-4">
@@ -126,10 +131,14 @@ export const Education = () => {
 
             </div>
 
-          </div>
+          </SpotlightCard>
 
           {/* High School Card */}
-          <div className="bg-neutral-50 dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 shadow-xs">
+          <SpotlightCard 
+            spotlightColor="rgba(225, 29, 72, 0.1)"
+            spotlightBorderColor="rgba(244, 63, 94, 0.35)"
+            className="bg-neutral-50 dark:bg-neutral-900 rounded-3xl border border-neutral-200 dark:border-neutral-800 p-6 sm:p-8 shadow-xs hover:shadow-xl transition-all duration-300"
+          >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               
               <div className="flex items-start gap-4">
@@ -160,7 +169,7 @@ export const Education = () => {
                   {/* Achievements */}
                   <div className="flex flex-wrap gap-2 mt-3">
                     {highSchool.achievements.map((ach, i) => (
-                      <span key={i} className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800">
+                      <span key={i} className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800 hover:scale-105 hover:border-rose-400 transition-all duration-200 cursor-default">
                         <Award className="w-3 h-3" />
                         {ach}
                       </span>
@@ -170,7 +179,7 @@ export const Education = () => {
               </div>
 
             </div>
-          </div>
+          </SpotlightCard>
 
         </div>
 

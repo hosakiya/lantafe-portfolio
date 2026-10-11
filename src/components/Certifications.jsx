@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { 
   Award, ExternalLink, CheckCircle, ShieldCheck, 
   FileCheck, Calendar, Hash, X, PlusCircle 
 } from 'lucide-react';
 import { certificationsData } from '../data/certifications';
+import { SpotlightCard } from './SpotlightCard';
 
 export const Certifications = () => {
   const [selectedCert, setSelectedCert] = useState(null);
@@ -28,13 +30,15 @@ export const Certifications = () => {
         {/* Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {certificationsData.map((cert) => (
-            <div 
+            <SpotlightCard 
               key={cert.id}
-              className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-xs hover:border-neutral-300 dark:hover:border-neutral-700 transition-all flex flex-col justify-between"
+              spotlightColor="rgba(225, 29, 72, 0.12)"
+              spotlightBorderColor="rgba(244, 63, 94, 0.4)"
+              className="bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-xs hover:border-rose-400/60 dark:hover:border-rose-500/60 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-start justify-between gap-3 mb-3">
-                  <div className="p-2.5 rounded-xl bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-400">
+                  <div className="p-2.5 rounded-xl bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-400 group-hover:scale-110 transition-transform">
                     <Award className="w-5 h-5" />
                   </div>
                   <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 px-2.5 py-0.5 rounded-full">
@@ -42,7 +46,7 @@ export const Certifications = () => {
                   </span>
                 </div>
 
-                <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-white tracking-tight">
+                <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-white tracking-tight group-hover:text-rose-700 dark:group-hover:text-rose-400 transition-colors">
                   {cert.name}
                 </h3>
                 <div className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400 mt-1">
@@ -62,7 +66,7 @@ export const Certifications = () => {
                     {cert.skillsLearned.map((s) => (
                       <span 
                         key={s}
-                        className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300"
+                        className="text-[11px] font-medium px-2 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:scale-105 hover:border-rose-400 transition-all duration-200 cursor-default"
                       >
                         {s}
                       </span>
@@ -78,28 +82,26 @@ export const Certifications = () => {
                 </span>
                 <button
                   onClick={() => setSelectedCert(cert)}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-700 dark:text-rose-400 hover:text-rose-800 dark:hover:text-rose-300 transition-colors cursor-pointer"
+                  className="group/btn inline-flex items-center gap-1.5 text-xs font-semibold text-rose-700 dark:text-rose-400 hover:text-rose-800 dark:hover:text-rose-300 hover:scale-105 active:scale-95 transition-all duration-200 ease-spring cursor-pointer"
                 >
                   <span>View Credential</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                 </button>
               </div>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
-
-
 
       </div>
 
       {/* Credential Viewer Lightbox Modal */}
-      {selectedCert && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-sm animate-in fade-in duration-150">
-          <div className="relative w-full max-w-md bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-2xl">
+      {selectedCert && createPortal(
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/80 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="relative w-full max-w-md bg-white dark:bg-neutral-900 rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-2xl animate-in zoom-in-95 duration-200">
             <button
               onClick={() => setSelectedCert(null)}
               aria-label="Close credential preview"
-              className="absolute top-4 right-4 p-1.5 rounded-lg text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              className="absolute top-4 right-4 p-1.5 rounded-lg text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -114,7 +116,7 @@ export const Certifications = () => {
               </div>
             </div>
 
-            <h3 className="text-base font-bold text-neutral-900 dark:text-white mb-2">
+            <h3 className="text-base font-bold text-neutral-900 dark:text-white mb-3">
               {selectedCert.name}
             </h3>
 
@@ -144,7 +146,7 @@ export const Certifications = () => {
                 href={selectedCert.credentialUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 py-2 text-xs font-semibold rounded-xl bg-rose-700 hover:bg-rose-800 text-white text-center transition-colors flex items-center justify-center gap-1.5"
+                className="flex-1 py-2 text-xs font-semibold rounded-xl bg-rose-700 hover:bg-rose-800 text-white text-center transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-1.5"
               >
                 <span>Verify Online</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -152,7 +154,8 @@ export const Certifications = () => {
             </div>
 
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );

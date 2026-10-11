@@ -67,10 +67,75 @@
   animation: drift-2 25s ease-in-out infinite reverse;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .animate-drift-1, .animate-drift-2 {
-    animation: none;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
   }
 }
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes circularWipeExpand {
+  0% {
+    clip-path: circle(0px at var(--wipe-x, 50%) var(--wipe-y, 50%));
+  }
+  100% {
+    clip-path: circle(var(--wipe-radius, 150vmax) at var(--wipe-x, 50%) var(--wipe-y, 50%));
+  }
+}
+
+.animate-circular-wipe {
+  animation: circularWipeExpand 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.ease-spring {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift-1, 
+  .animate-drift-2,
+  .animate-float,
+  .animate-float-slow,
+  .animate-pulse-glow,
+  .animate-spin-slow {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 
 
