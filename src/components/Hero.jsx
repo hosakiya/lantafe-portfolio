@@ -7,8 +7,16 @@ import { LinkedInIcon, GitHubIcon } from './Icons';
 
 import { personalInfo } from '../data/profile';
 
-export const Hero = ({ onOpenResume }) => {
-  const scrollTo = (id) => {
+export const Hero = ({ onOpenResume, onTriggerWipe }) => {
+  const scrollTo = (id, e, targetName) => {
+    if (e && onTriggerWipe) {
+      const rect = e.currentTarget ? e.currentTarget.getBoundingClientRect() : null;
+      const x = e.clientX || (rect ? rect.left + rect.width / 2 : window.innerWidth / 2);
+      const y = e.clientY || (rect ? rect.top + rect.height / 2 : window.innerHeight / 2);
+      onTriggerWipe(x, y, targetName || 'Selected Works', id);
+      return;
+    }
+
     const el = document.getElementById(id);
     if (el) {
       const navOffset = 80;
@@ -64,7 +72,7 @@ export const Hero = ({ onOpenResume }) => {
             {/* Primary Action Buttons */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
               <button
-                onClick={() => scrollTo('projects')}
+                onClick={(e) => scrollTo('projects', e, 'Featured Projects')}
                 className="group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-semibold text-sm shadow-md shadow-rose-700/20 hover:shadow-xl hover:shadow-rose-700/30 hover:scale-105 active:scale-95 transition-all duration-200 ease-spring cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-rose-500"
               >
                 <span>View My Work</span>
@@ -72,7 +80,7 @@ export const Hero = ({ onOpenResume }) => {
               </button>
 
               <button
-                onClick={() => scrollTo('contact')}
+                onClick={(e) => scrollTo('contact', e, 'Get in Touch')}
                 className="group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800/80 text-neutral-800 dark:text-neutral-200 font-semibold text-sm hover:scale-105 active:scale-95 transition-all duration-200 ease-spring cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-rose-500"
               >
                 <Mail className="w-4 h-4 text-neutral-500 dark:text-neutral-400 group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors" />

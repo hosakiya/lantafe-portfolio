@@ -15,10 +15,12 @@ import { NotFound } from './components/NotFound';
 import { ScrollReveal } from './components/ScrollReveal';
 import { ScrollProgress } from './components/ScrollProgress';
 import { BackToTop } from './components/BackToTop';
+import { CircularWipe } from './components/CircularWipe';
 
 export function AppContent() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isNotFoundView, setIsNotFoundView] = useState(false);
+  const [activeWipe, setActiveWipe] = useState(null);
 
   useEffect(() => {
     // Check URL hash or query parameter for 404 test
@@ -40,6 +42,25 @@ export function AppContent() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleTriggerWipe = (x, y, targetName, targetId) => {
+    setActiveWipe({ x, y, targetName });
+
+    if (targetId) {
+      const element = document.getElementById(targetId);
+      if (element) {
+        setTimeout(() => {
+          const navOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 220);
+      }
+    }
+  };
+
   if (isNotFoundView) {
     return <NotFound onReset={handleResetToHome} />;
   }
@@ -50,11 +71,19 @@ export function AppContent() {
       <ScrollProgress />
 
       {/* Sticky Navigation */}
-      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
+      <Navbar 
+        onOpenResume={() => setIsResumeOpen(true)} 
+        onTriggerWipe={handleTriggerWipe}
+      />
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        <ScrollReveal><Hero onOpenResume={() => setIsResumeOpen(true)} /></ScrollReveal>
+        <ScrollReveal>
+          <Hero 
+            onOpenResume={() => setIsResumeOpen(true)} 
+            onTriggerWipe={handleTriggerWipe}
+          />
+        </ScrollReveal>
         <ScrollReveal><About /></ScrollReveal>
         <ScrollReveal><Skills /></ScrollReveal>
         <ScrollReveal><Projects /></ScrollReveal>
@@ -69,6 +98,12 @@ export function AppContent() {
 
       {/* Floating Back to Top Microinteraction */}
       <BackToTop />
+
+      {/* Circular Screen Transition Wipe from Click Coordinate */}
+      <CircularWipe 
+        activeWipe={activeWipe} 
+        onComplete={() => setActiveWipe(null)} 
+      />
 
       {/* Interactive Resume View/Print Modal */}
       <ResumeModal 

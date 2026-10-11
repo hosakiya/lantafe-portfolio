@@ -20,7 +20,7 @@ export const ScrollReveal = ({
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
 
     if (ref.current) {
@@ -36,23 +36,23 @@ export const ScrollReveal = ({
 
   const getTransformClasses = () => {
     if (isVisible) {
-      return 'opacity-100 translate-y-0 translate-x-0 scale-100';
+      return 'opacity-100 translate-y-0 translate-x-0 scale-100 filter-none';
     }
 
     switch (direction) {
       case 'left': 
-        return 'opacity-0 -translate-x-6 scale-[0.99]';
+        return 'opacity-0 -translate-x-5 scale-[0.99]';
       case 'right': 
-        return 'opacity-0 translate-x-6 scale-[0.99]';
+        return 'opacity-0 translate-x-5 scale-[0.99]';
       case 'down':
-        return 'opacity-0 -translate-y-6 scale-[0.99]';
+        return 'opacity-0 -translate-y-5 scale-[0.99]';
       case 'scale':
         return 'opacity-0 scale-95 translate-y-2';
       case 'fade':
-        return 'opacity-0 scale-100';
+        return 'opacity-0';
       case 'up': 
       default: 
-        return 'opacity-0 translate-y-6 scale-[0.99]';
+        return 'opacity-0 translate-y-5 scale-[0.99]';
     }
   };
 

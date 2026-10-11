@@ -7,7 +7,7 @@ import { useTheme } from '../context/ThemeContext';
 import { personalInfo } from '../data/profile';
 import { CircularWipe } from './CircularWipe';
 
-export const Navbar = ({ onOpenResume }) => {
+export const Navbar = ({ onOpenResume, onTriggerWipe }) => {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -52,23 +52,25 @@ export const Navbar = ({ onOpenResume }) => {
     const x = e.clientX || (rect ? rect.left + rect.width / 2 : window.innerWidth / 2);
     const y = e.clientY || (rect ? rect.top + rect.height / 2 : 40);
 
-    // Trigger circular wipe animation expanding from click position
-    setActiveWipe({ x, y, targetName });
-
-    // Scroll to target section right as the circular wipe blankets the screen
     const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-    if (element) {
-      setTimeout(() => {
-        const navOffset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }, 220);
+    if (onTriggerWipe) {
+      onTriggerWipe(x, y, targetName, targetId);
+    } else {
+      // Fallback
+      setActiveWipe({ x, y, targetName });
+      const element = document.getElementById(targetId);
+      if (element) {
+        setTimeout(() => {
+          const navOffset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 220);
+      }
     }
   };
 
@@ -215,12 +217,6 @@ export const Navbar = ({ onOpenResume }) => {
           </div>
         </div>
       )}
-
-      {/* Circular Screen Transition Wipe from Click Coordinate */}
-      <CircularWipe 
-        activeWipe={activeWipe} 
-        onComplete={() => setActiveWipe(null)} 
-      />
     </header>
   );
 };
